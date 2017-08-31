@@ -69,7 +69,7 @@
             case 'cookieStorage':
                 document.cookie = [
                         cookieName, '=', cookieValue,
-                        '; expires=' + that.options.cookieExpire,
+                        '; expires=' + calculateExpiration(that.options.cookieExpire),
                         that.options.cookiePath ? '; path=' + that.options.cookiePath : '',
                         that.options.cookieDomain ? '; domain=' + that.options.cookieDomain : '',
                         that.options.cookieSecure ? '; secure' : ''
@@ -136,7 +136,7 @@
 
     var calculateExpiration = function(cookieExpire) {
         var time = cookieExpire.replace(/[0-9]*/, ''); //s,mi,h,d,m,y
-        cookieExpire = cookieExpire.replace(/[A-Za-z]{1,2}}/, ''); //number
+        cookieExpire = cookieExpire.replace(/[A-Za-z]{1,2}/, ''); //number
 
         switch (time.toLowerCase()) {
             case 's':
